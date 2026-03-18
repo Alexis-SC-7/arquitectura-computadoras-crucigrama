@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #f8fafc;
+  margin: 0;
+  overflow-y: auto !important;
+}
+
+/* --- ESTILO DE PISTAS SENIOR (ABAJO) --- */
+
+/* 1. Ocultar los títulos originales (ACROSS/DOWN) */
+.crossword.clues-column h3 {
+  font-size: 0 !important; /* Desaparece el texto original */
+  margin-bottom: 1.5rem !important;
+}
+
+/* 2. Inyectar "Horizontales" en la primera columna */
+.crossword.clues-column:first-child h3::before {
+  content: "HORIZONTALES";
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #0ea5e9; /* Sky 500 */
+  letter-spacing: 0.1em;
+}
+
+/* 3. Inyectar "Verticales" en la segunda columna */
+.crossword.clues-column:last-child h3::before {
+  content: "VERTICALES";
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #6366f1; /* Indigo 500 */
+  letter-spacing: 0.1em;
+}
+
+/* 4. Formato bonito a las cajas de pistas */
+.crossword.clues-column {
+  padding: 2.5rem !important;
+  background: white !important;
+  border-radius: 2rem !important;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
+  border: 1px solid #e2e8f0 !important;
+  margin: 1rem !important;
+}
+
+/* 5. Estilo a cada pista individual */
+.crossword.clue {
+  font-size: 0.95rem !important;
+  color: #475569 !important; /* Slate 600 */
+  padding: 12px 0 !important;
+  border-bottom: 1px font-thin solid #f1f5f9 !important;
+  list-style: none !important;
+  line-height: 1.5 !important;
+  transition: all 0.2s ease;
+}
+
+/* Resaltar la pista cuando el usuario la selecciona en el tablero */
+.crossword.clue.active {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+  transform: translateX(5px);
+}
+
+/* --- ESTILO DEL TABLERO --- */
+.crossword rect {
+  stroke: #000000 !important;
+  stroke-width: 0.15px !important;
+}
+
+.crossword text {
+  fill: #000000 !important;
+  font-weight: 700 !important;
+}
