@@ -8,11 +8,35 @@ body {
   overflow-y: auto !important;
 }
 
-/* --- ESTILO DE PISTAS SENIOR (ABAJO) --- */
+/* --- OPTIMIZACIÓN DE RESPONSIVIDAD (MÓVIL) --- */
+
+/* Contenedor que permite el scroll lateral en celulares para que el tablero no se aplaste */
+.crossword-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Scroll suave en dispositivos iOS */
+  padding-bottom: 20px;
+}
+
+/* Forzamos un ancho mínimo al tablero en móvil para mantener legibilidad */
+.crossword-wrapper {
+  min-width: 650px; /* Evita que las celdas se vuelvan diminutas */
+  margin: 0 auto;
+}
+
+/* En pantallas grandes (PC), el tablero vuelve a ser flexible */
+@media (min-width: 1024px) {
+  .crossword-wrapper {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+/* --- ESTILO DE PISTAS SENIOR --- */
 
 /* 1. Ocultar los títulos originales (ACROSS/DOWN) */
 .crossword.clues-column h3 {
-  font-size: 0 !important; /* Desaparece el texto original */
+  font-size: 0 !important; 
   margin-bottom: 1.5rem !important;
 }
 
@@ -21,7 +45,7 @@ body {
   content: "HORIZONTALES";
   font-size: 1.25rem;
   font-weight: 900;
-  color: #0ea5e9; /* Sky 500 */
+  color: #0ea5e9;
   letter-spacing: 0.1em;
 }
 
@@ -30,36 +54,55 @@ body {
   content: "VERTICALES";
   font-size: 1.25rem;
   font-weight: 900;
-  color: #6366f1; /* Indigo 500 */
+  color: #6366f1;
   letter-spacing: 0.1em;
 }
 
-/* 4. Formato bonito a las cajas de pistas */
+/* 4. Formato a las cajas de pistas */
 .crossword.clues-column {
-  padding: 2.5rem !important;
+  padding: 1.5rem !important; /* Reducido un poco para pantallas medianas */
   background: white !important;
   border-radius: 2rem !important;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
   border: 1px solid #e2e8f0 !important;
-  margin: 1rem !important;
+  margin: 1rem 0 !important; /* Ajuste de margen lateral */
+  min-width: 280px !important;
 }
 
 /* 5. Estilo a cada pista individual */
 .crossword.clue {
   font-size: 0.95rem !important;
-  color: #475569 !important; /* Slate 600 */
+  color: #475569 !important;
   padding: 12px 0 !important;
-  border-bottom: 1px font-thin solid #f1f5f9 !important;
+  border-bottom: 1px solid #f1f5f9 !important;
   list-style: none !important;
   line-height: 1.5 !important;
   transition: all 0.2s ease;
 }
 
-/* Resaltar la pista cuando el usuario la selecciona en el tablero */
+/* Resaltar la pista activa */
 .crossword.clue.active {
   color: #0f172a !important;
   font-weight: 600 !important;
   transform: translateX(5px);
+}
+
+/* --- AJUSTES DE DISEÑO EN CELULAR --- */
+@media (max-width: 768px) {
+  /* Apila las columnas de pistas una debajo de otra */
+  .crossword {
+    flex-direction: column !important;
+  }
+
+  .crossword.clues-column {
+    margin: 1rem 0 !important;
+    padding: 1.5rem !important;
+  }
+
+  /* Ajusta el tamaño de fuente de las pistas en móvil para que no ocupen tanto espacio */
+  .crossword.clue {
+    font-size: 0.85rem !important;
+  }
 }
 
 /* --- ESTILO DEL TABLERO --- */

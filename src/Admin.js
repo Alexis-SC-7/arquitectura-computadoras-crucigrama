@@ -167,38 +167,41 @@ function Admin() {
         )}
       </main>
 
-      {/* MODAL QR DINÁMICO */}
-      {mostrarQR && (
-        <div className="fixed inset-0 bg-slate-950/90 backdrop-blur-xl flex items-center justify-center z-[100] p-6 animate-in fade-in duration-300">
-          <div className="bg-white p-12 rounded-[4rem] text-center shadow-2xl max-w-sm w-full relative">
-            <button 
-              onClick={() => setMostrarQR(false)}
-              className="absolute top-8 right-8 text-slate-400 hover:text-slate-900 transition-colors"
-            >
-              <X size={32} />
-            </button>
+{/* MODAL QR DINÁMICO */}
+{mostrarQR && (
+  <div className="fixed inset-0 bg-slate-950/90 backdrop-blur-xl flex items-center justify-center z-[100] p-4 md:p-6 animate-in fade-in duration-300">
+    <div className="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[4rem] text-center shadow-2xl max-w-sm w-full relative flex flex-col items-center"> {/* Agregamos flex-col e items-center */}
+      <button 
+        onClick={() => setMostrarQR(false)}
+        className="absolute top-6 right-6 md:top-8 md:right-8 text-slate-400 hover:text-slate-900 transition-colors"
+      >
+        <X size={32} />
+      </button>
 
-            <h3 className="text-3xl font-black mb-2 tracking-tighter uppercase text-slate-900 italic">Unirse al Reto</h3>
-            <p className="text-slate-400 text-xs mb-8 uppercase tracking-widest font-bold">Escanea para comenzar el crucigrama</p>
-            
-            <div className="bg-slate-50 p-8 rounded-[2.5rem] inline-block border border-slate-100 shadow-inner">
-              <QRCodeSVG value={window.location.origin} size={250} />
-            </div>
+      <h3 className="text-2xl md:text-3xl font-black mb-2 tracking-tighter uppercase text-slate-900 italic">Unirse al Reto</h3>
+      <p className="text-slate-400 text-[10px] mb-6 md:mb-8 uppercase tracking-widest font-bold">Escanea para comenzar el crucigrama</p>
+      
+      {/* Contenedor del QR con centrado forzado */}
+      <div className="bg-slate-50 p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center border border-slate-100 shadow-inner w-fit mx-auto">
+        <QRCodeSVG value={window.location.origin} size={220} includeMargin={true} />
+      </div>
 
-            <div className="mt-10 flex items-center justify-center gap-3 text-slate-400">
-              <Share2 size={16} />
-              <span className="text-[10px] font-black uppercase tracking-widest">{window.location.origin}</span>
-            </div>
-            
-            <button 
-              onClick={() => setMostrarQR(false)} 
-              className="mt-8 w-full py-5 bg-slate-900 text-white font-black rounded-3xl uppercase tracking-widest text-xs active:scale-95 transition-all shadow-xl"
-            >
-              Volver al Leaderboard
-            </button>
-          </div>
-        </div>
-      )}
+      <div className="mt-8 md:mt-10 flex items-center justify-center gap-3 text-slate-400">
+        <Share2 size={16} />
+        <span className="text-[10px] font-black uppercase tracking-widest truncate max-w-[200px]">
+          {window.location.origin}
+        </span>
+      </div>
+      
+      <button 
+        onClick={() => setMostrarQR(false)} 
+        className="mt-6 md:mt-8 w-full py-4 md:py-5 bg-slate-900 text-white font-black rounded-2xl md:rounded-3xl uppercase tracking-widest text-[10px] active:scale-95 transition-all shadow-xl"
+      >
+        Volver al Leaderboard
+      </button>
+    </div>
+  </div>
+)}
 
       <footer className="mt-12 text-center py-6 border-t border-slate-800 text-slate-600 font-medium">
         Escuela Superior de Cómputo - IPN | Arquitectura de Computadoras | {new Date().getFullYear()}
